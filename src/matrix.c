@@ -10,7 +10,7 @@ memcpy(&sign,&a,sizeof(double));
 return (((sign>>63)&1) ==1);
 }
 
-int s21_create_matrix(int rows, int columns, matrix_t *result){
+int create_matrix(int rows, int columns, matrix_t *result){
     int out;
     result->columns = columns;
     result->rows = rows;
@@ -23,14 +23,14 @@ int s21_create_matrix(int rows, int columns, matrix_t *result){
     
     return SUCCESS;
 };
-void s21_remove_matrix(matrix_t *A){ // очистка матриц
+void remove_matrix(matrix_t *A){ // очистка матриц
     for (int i = 0;i<A->rows;i++){
         for (int j = 0;j<A->columns;j++){
             A->matrix[i][j] = 0;
         }
     }
 };
-int s21_eq_matrix(matrix_t *A, matrix_t *B){
+int eq_matrix(matrix_t *A, matrix_t *B){
 int columns_A = A->columns;
 int columns_B = B->columns;
 int rows_A = A->rows;
@@ -50,14 +50,14 @@ for (int i = 0;i<rows_A;i++){
 }
 return result;
 };//сравнение матриц
-int s21_sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result);//сумма
-int s21_sub_matrix(matrix_t *A, matrix_t *B, matrix_t *result);//разность 
-int s21_mult_number(matrix_t *A, double number, matrix_t *result);//умножение на число 
-int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result); // умножение 2-х матриц
-int s21_transpose(matrix_t *A, matrix_t *result); //транспонирование
-int s21_calc_complements(matrix_t *A, matrix_t *result);// Минор матрицы и матрица алгебраических дополнений
-int s21_determinant(matrix_t *A, double *result); // определитель
-int s21_inverse_matrix(matrix_t *A, matrix_t *result);// обратная матрица
+int sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result);//сумма
+int sub_matrix(matrix_t *A, matrix_t *B, matrix_t *result);//разность 
+int mult_number(matrix_t *A, double number, matrix_t *result);//умножение на число 
+int mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result); // умножение 2-х матриц
+int transpose(matrix_t *A, matrix_t *result); //транспонирование
+int calc_complements(matrix_t *A, matrix_t *result);// Минор матрицы и матрица алгебраических дополнений
+int determinant(matrix_t *A, double *result); // определитель
+int inverse_matrix(matrix_t *A, matrix_t *result);// обратная матрица
 
 
 static void print_matrix(matrix_t a){
@@ -79,8 +79,8 @@ int main (){
     double x = 1.23456789;
     double x2 = ldexp(x,6);
     printf("%f\n",x2);
-    s21_create_matrix(4,3,&m1);
-    s21_create_matrix(4,3,&m2);
+    create_matrix(4,3,&m1);
+    create_matrix(4,3,&m2);
     int num = 0;
     for (int i = 0;i<m1.rows;i++){
         for (int j = 0; j < m1.columns;j++){
@@ -91,7 +91,7 @@ int main (){
     }
     print_matrix(m1);
     print_matrix(m2);
-    if (s21_eq_matrix(&m1,&m2))printf("\033[0;32mEQUAL\033[0m\n");
+    if (eq_matrix(&m1,&m2))printf("\033[0;32mEQUAL\033[0m\n");
     else printf("\033[31mNOT_EQUAL\033[0m\n");
 
     return 0;
