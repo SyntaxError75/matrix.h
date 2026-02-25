@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdint.h>
 
+
 #define SUCCESS 1
 #define FAILURE 0
 
@@ -24,3 +25,5 @@ int transpose(matrix_t *A, matrix_t *result); //транспонирование
 int calc_complements(matrix_t *A, matrix_t *result);// Минор матрицы и матрица алгебраических дополнений
 int determinant(matrix_t *A, double *result); // определитель
 int inverse_matrix(matrix_t *A, matrix_t *result);// обратная матрица
+
+void print_matrix(matrix_t a);
