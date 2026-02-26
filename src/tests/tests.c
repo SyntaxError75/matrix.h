@@ -19,13 +19,17 @@ static void init_matrix_with_varables(int rows,int columns,matrix_t *result, ...
 START_TEST(eq_test_positive){
 matrix_t m1,m2,m3,m4;
 init_matrix_with_varables(3,3,&m1,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0);
-init_matrix_with_varables(3,3,&m2,1.000002,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0); // проблема, на крайнем случае при разнице 0.000001 не проходит тест исправь!!!
+init_matrix_with_varables(3,3,&m2,1.000001,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0); // проблема, на крайнем случае при разнице 0.000001 не проходит тест исправь!!!
 init_matrix_with_varables(3,3,&m3,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0);
 init_matrix_with_varables(3,3,&m4,1.0000011,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0);
 ck_assert_int_eq(eq_matrix(&m1,&m2), 0);
 ck_assert_int_eq(eq_matrix(&m1,&m3), 1);
 ck_assert_int_eq(eq_matrix(&m1,&m4), 0);
 ck_assert_int_eq(eq_matrix(&m2,&m4), 1);
+remove_matrix(&m1);
+remove_matrix(&m2);
+remove_matrix(&m3);
+remove_matrix(&m4);
 }
 END_TEST
 
@@ -39,6 +43,10 @@ ck_assert_int_eq(eq_matrix(&m1,&m2), 0);
 ck_assert_int_eq(eq_matrix(&m1,&m3), 1);
 ck_assert_int_eq(eq_matrix(&m1,&m4), 0);
 ck_assert_int_eq(eq_matrix(&m2,&m4), 1);
+remove_matrix(&m1);
+remove_matrix(&m2);
+remove_matrix(&m3);
+remove_matrix(&m4);
 }
 END_TEST
 
@@ -52,5 +60,10 @@ ck_assert_int_eq(eq_matrix(&m1,&m2), 0);
 ck_assert_int_eq(eq_matrix(&m1,&m3), 0);
 ck_assert_int_eq(eq_matrix(&m1,&m4), 0);
 ck_assert_int_eq(eq_matrix(&m2,&m4), 0);
+remove_matrix(&m1);
+remove_matrix(&m2);
+remove_matrix(&m3);
+remove_matrix(&m4);
 }
+
 END_TEST
