@@ -4,6 +4,16 @@
 // 1 — Ошибка, некорректная матрица;
 // 2 — Ошибка вычисления (несовпадающие размеры матриц; матрица, для которой нельзя провести вычисления и т. д.).
 
+static int change_sign_of_values_matrix(matrix_t* a){
+int out = 0;
+    for(int i = 0;i<a->rows;i++){
+        for(int j = 0;j <a->columns;j++){
+            a->matrix[i][j] *= -1;
+        }
+    }
+    return out;
+}
+
 static int get_sign_of_double(double a){
 uint64_t sign;
 memcpy(&sign,&a,sizeof(double));
@@ -76,6 +86,7 @@ for (int i = 0;i<rows_A;i++){
 return result;
 }//сравнение матриц
  int sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result){//сумма
+    if (A==NULL || B ==NULL || result == NULL)return 1;
     if(A->rows<=0 || A->columns<=0 || A->matrix == NULL || B->rows<=0 || B->columns<=0 || B->matrix == NULL || result->rows<=0 || result->columns<=0 || result->matrix == NULL)  return 1;
     if (A->columns!=B->columns || A->columns!=result->columns ||A->rows!=B->rows || A->rows!=result->rows)return 2;
     for(int i = 0;i<A->rows;i++){
@@ -83,6 +94,7 @@ return result;
             result->matrix[i][j] = A->matrix[i][j]+B->matrix[i][j];
         }
     }
+    return 0;
  }
  int sub_matrix(matrix_t *A, matrix_t *B, matrix_t *result){
     matrix_t neg_B = *B;
@@ -110,21 +122,16 @@ for (int i = 0;i<a.rows;i++){
   printf("============================================\n\n");
 }
 
-static int change_sign_of_values_matrix(matrix_t* a){
-int out = 0;
-    for(int i = 0;i<a->rows;i++){
-        for(int j = 0;j <a->columns;j++){
-            a->matrix[i][j] *= -1;
-        }
-    }
-    return out;
-}
+
 
 
 // int main (){
 // matrix_t m1,m2;
-// create_matrix(1,4,&m1);
-// remove_sign_of_values_matrix(&m1);
-// print_matrix(m1);
+// create_matrix(3,4,&m1);
+// //remove_sign_of_values_matrix(&m1);
+// //print_matrix(m1);
+// for (int i = 0;i<12;i++){
+//     printf("%f", m1.matrix[i]);
+// }
 //     return 0;
 // }
