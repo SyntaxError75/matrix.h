@@ -9,6 +9,8 @@ int main (){
         // Создаём группу тестов (можно называть как угодно)
         TCase *tc_math = tcase_create("Simple Math");
         TCase *tc_sum_matrix = tcase_create("Test sum of matrixs");
+        TCase *tc_mutl_to_num = tcase_create("Testing multiplex matrix to number");
+        TCase *tc_mult_matrix_to_matrix = tcase_create("Testing multiplex matrix to matrix");
         // Добавляем все наши тесты в группу
         tcase_add_test(tc_math, eq_test_positive);
         tcase_add_test(tc_math, eq_test_negative);
@@ -19,9 +21,19 @@ int main (){
         tcase_add_test(tc_sum_matrix, incorrect_matrix_3);
         tcase_add_test(tc_sum_matrix, null_pointers_for_sum);
         tcase_add_test(tc_sum_matrix,sums_1);
+        tcase_add_test(tc_mutl_to_num,mult_to_number_1);
+        tcase_add_test(tc_mutl_to_num,mult_to_number_2);
+        tcase_add_test(tc_mutl_to_num,mult_to_number_INFINITY);
+        tcase_add_test(tc_mult_matrix_to_matrix,mult_matrix_1_by_1);
+        tcase_add_test(tc_mult_matrix_to_matrix,mult_matrix_3_by_2_and_2_by_3);
+        tcase_add_test(tc_mult_matrix_to_matrix,mult_matrix_10_by_2_and_2_by_7);
+        tcase_add_test(tc_mult_matrix_to_matrix,mult_matrix_from_task);
+
         // Добавляем группу в набор
         suite_add_tcase(suite, tc_math);
         suite_add_tcase(suite,tc_sum_matrix);
+        suite_add_tcase(suite,tc_mutl_to_num);
+        suite_add_tcase(suite,tc_mult_matrix_to_matrix);
         // Создаём раннер (бегунок) для запуска тестов
         SRunner *runner = srunner_create(suite);
         // Запускаем тесты
